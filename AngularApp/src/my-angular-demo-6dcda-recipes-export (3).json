@@ -1,0 +1,70 @@
+[ {
+  "description" : "Deeply Fried stuffed Mirchi bajji ",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/8/81/Mirapakaya_Bajji_or_Mirchi_Bhajji.JPG",
+  "ingredients" : [ {
+    "amount" : 3,
+    "name" : "Chillies"
+  } ],
+  "name" : "Mirchi Bajji"
+}, {
+  "description" : "Chicken Dum Biryani",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/f/fe/Chicken_Biryani.jpg",
+  "ingredients" : [ {
+    "amount" : 1,
+    "name" : "chicken"
+  }, {
+    "amount" : 3,
+    "name" : "rice"
+  }, {
+    "amount" : 5,
+    "name" : "spices"
+  } ],
+  "name" : "Chicken dum biryani"
+}, {
+  "description" : "Indian Dosa served with coconut chutney and sambar",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/2/2e/Masala_Dosa_in_Banana_Leaf_with_Chutney.jpg",
+  "ingredients" : [ {
+    "amount" : 2,
+    "name" : "Dosa batter"
+  } ],
+  "name" : "Indian Dosa"
+}, {
+  "description" : "Pani puri with onions and mint water loaded with chole",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/0/0f/Pani_Puri_.jpg",
+  "ingredients" : [ {
+    "amount" : 1,
+    "name" : "Mint"
+  }, {
+    "amount" : 5,
+    "name" : "puri"
+  }, {
+    "amount" : 1,
+    "name" : "onions"
+  }, {
+    "amount" : 2,
+    "name" : "chilles"
+  } ],
+  "name" : "Pani puri"
+}, {
+  "description" : "Desi pasta made with Indian spices and cheese",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/e/e9/Egyptian_food_Koshary.jpg",
+  "ingredients" : [ {
+    "amount" : 1,
+    "name" : "pasta"
+  }, {
+    "amount" : 3,
+    "name" : "cheese"
+  }, {
+    "amount" : 1,
+    "name" : "Spices"
+  } ],
+  "name" : "Desi Pasta"
+}, {
+  "description" : "Cheese burger loaded with fries",
+  "imagePath" : "https://upload.wikimedia.org/wikipedia/commons/b/b8/WHOPPER_with_Cheese%2C_at_Burger_King_%282014.05.04%29.jpg",
+  "ingredients" : [ {
+    "amount" : 2,
+    "name" : "cheese"
+  } ],
+  "name" : "Cheese Burger"
+} ]
