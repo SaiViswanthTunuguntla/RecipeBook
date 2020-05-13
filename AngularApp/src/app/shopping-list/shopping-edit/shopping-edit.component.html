@@ -1,27 +1,43 @@
 <div  class="row">
-<div class="col-md-12">
-    <form (ngSubmit)="onadd(f)" #f=ngForm>
+    <div class="col-xs-12">
+        <form (ngSubmit)="onadd(f)" #f=ngForm>
         <div  class="row">
-            <label for="name">Name: </label> <input 
-        type="text" 
-        name="name"
-        ngModel
-        required
-        minlength="3"
-        #name=ngModel>
-        <span *ngIf="!name.valid && name.touched">item name is invalid!</span>
-        <label for="amount">Amount: </label> 
-        <input type="number" 
-        name="amount" 
-        ngModel 
-        required
-         #amount=ngModel>
-        <span *ngIf="!amount.valid && amount.touched">amount is invalid!</span>
-        <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{editmode==true ? "update":"add"}}</button>
-        <button class="btn btn-danger" type="button" (click)=onDelete()>Delete</button>
-        <button class="btn btn-primary" type="button" (click)=onClear(f)>clear</button>
+            <div class="col-sm-5 form-group">
+                <label for="name">Name: </label> <input 
+                 type="text" 
+                name="name"
+                ngModel
+                required
+                class="form-control"
+                minlength="3"
+                 #name=ngModel>
+                <span *ngIf="!name.valid && name.touched">item name is invalid!</span>
+            </div>
+            <div class="col-sm-5 form-group">       
+                <label for="amount">Amount: </label> 
+                <input type="number" 
+                name="amount" 
+                ngModel
+                class="form-control" 
+                required
+                #amount=ngModel
+                pattern="^[1-9]+[0-9]*$">
+                <span *ngIf="!amount.valid && amount.touched">amount is invalid!</span>
+            </div>
+        </div> 
+        <div class="row"> 
+            <div class="col-xs-12">
+            <button class="btn btn-success" type="submit" 
+            [disabled]="!f.valid">{{editmode==true ? "update":"add"}}</button>
+            <button 
+            *ngIf="editmode"
+            class="btn btn-danger"
+           type="button" 
+           (click)=onDelete()>Delete</button>
+            <button class="btn btn-primary" type="button" (click)=onClear(f)>clear</button>
+        </div>
+        </div>   
+     </form >
     </div>
-    </form >
-</div>
 
 </div>

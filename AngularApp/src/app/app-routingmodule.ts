@@ -14,12 +14,13 @@ const approutes: Routes=[
     {path:'',redirectTo:'/recipes', pathMatch:'full'},
     {path:'recipes',component:RecipesComponent,
     canActivate:[Authguard],    
+    resolve:[RecipeResolverservice],
     children:[
         {path:'',component:RecipeStartComponent},
         { path: 'new', component: RecipeEditComponent },
         {path:'edit',component:RecipeEditComponent},
-        {path:':id',component:RecipeDetailComponent, resolve:[RecipeResolverservice]},
-        {path:':id/edit',component:RecipeEditComponent, resolve:[RecipeResolverservice]}
+        {path:':id',component:RecipeDetailComponent},
+        {path:':id/edit',component:RecipeEditComponent}
        
     ]},
     { path: 'auth', component: AuthComponent },

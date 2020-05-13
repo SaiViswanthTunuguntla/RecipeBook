@@ -45,7 +45,7 @@ export class AuthService{
 
     OnLogin(ema:String,passw:String)
     {
-        console.log("in login method");
+        //console.log("in login method");
         return this.http
         .post<AuthResponseData>(
             'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyATSm_Qe_JLCQfSUpLZXeMzJi-qskEzaPs',

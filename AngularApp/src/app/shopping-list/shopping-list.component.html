@@ -2,18 +2,19 @@
 
 <div class="row">
     <div class="col-md-5">
-        <router-outlet></router-outlet>
+        <app-shopping-edit></app-shopping-edit>
     </div>
-   <a [routerLink]="['/shoppinglist','edit']">
+   <!-- <a [routerLink]="['/shoppinglist','edit']">
     Add new components:
-    </a>
+    </a> -->
     <hr>
+    <div class="col-md-8">
     <ul class="list-group">
         <a class="list-group-item" 
         *ngFor= "let r of ingredient; let i=index" (click)="onedititem(i)">{{r.name}} ({{r.amount}})
     </a>
         
     </ul>
-    
+</div>
     </div>
     
