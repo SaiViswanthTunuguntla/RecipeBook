@@ -23,7 +23,7 @@ export class AppHeaderComponent implements OnInit {
    this.userSub=this.authservice.usersub.subscribe(user=>
     {
       this.isAuthenticated= user?true:false;
-      console.log(this.isAuthenticated);
+     // console.log(this.isAuthenticated);
     })
     
 }
