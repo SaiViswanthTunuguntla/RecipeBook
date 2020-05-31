@@ -8,9 +8,9 @@ import { User } from '../auth/user.model';
 @Injectable({providedIn:'root'})
 export class Datastaorageservice{
     constructor(private http:HttpClient,private recipeservice:RecipeServcie){}
-    username='admin'
-    password='nimda'
-    authString='Basic '+window.btoa(this.username+':'+this.password);
+    // username='admin'
+    // password='nimda'
+    // authString='Basic '+window.btoa(this.username+':'+this.password);
 
     Storedata(){
     const recipes=this.recipeservice.getRecipes();  
@@ -22,18 +22,17 @@ export class Datastaorageservice{
 }
     FetchData(){
 
-    //    return  this.http.get<Recipe[]>('https://my-angular-demo-6dcda.firebaseio.com/recipes.json')
-    //     .pipe(tap(recipes => {
-    //         this.recipeservice.setRecipes(recipes);
-    //       })
-    //     )
-     return  this.http.get<Recipe[]>('http://localhost:8080/users/viswa/recipes',
-        { headers:new HttpHeaders({Authorization: this.authString})}
-        )
+       return  this.http.get<Recipe[]>('https://my-angular-demo-6dcda.firebaseio.com/recipes.json')
         .pipe(tap(recipes => {
-        this.recipeservice.setRecipes(recipes);
-         })
-    )
+            this.recipeservice.setRecipes(recipes);
+          })
+        )
+    //  return  this.http.get<Recipe[]>('http://localhost:8080/users/viswa/recipes')
+    //     .pipe(tap(recipes => {
+    //         //console.log(recipes)
+    //     this.recipeservice.setRecipes(recipes);
+    //      })
+    // )
 
 }
 //console.log(response);

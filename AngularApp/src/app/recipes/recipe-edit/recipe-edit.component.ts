@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { RecipeServcie } from '../RecipeService';
+import { RecipeWebserviceService } from '../recipe-webservice.service';
+import { Observable } from 'rxjs';
+import { Recipe } from '../recipe.model';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -9,11 +12,11 @@ import { RecipeServcie } from '../RecipeService';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-
-  
   id: number;
   editMode = false;
   recipeForm: FormGroup;
+  errormsg:String;
+  authObs: Observable<Recipe>
 
   get ingredientsControls() {
     return (this.recipeForm.get('ingredients') as FormArray).controls;
@@ -22,6 +25,7 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private recipeService: RecipeServcie,
+    private recipeWebservice:RecipeWebserviceService,
     private router: Router
   ) {}
 
@@ -35,11 +39,29 @@ export class RecipeEditComponent implements OnInit {
 
   onSubmit() {
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, this.recipeForm.value);
+      this.recipeWebservice.updateRecipe(this.id, this.recipeForm.value).subscribe(
+        response=>{
+          this.recipeService.updateRecipe(this.id,response);
+          this.onCancel();
+        },
+      (error:String)=>{
+        console.log("in error block in ts")
+        this.errormsg=error;
+        this.recipeWebservice.errormsg.next(this.errormsg);
+      });
     } else {
-      this.recipeService.addRecipe(this.recipeForm.value);
+        this.recipeWebservice.addRecipe(this.recipeForm.value).subscribe(
+          response=>{
+            this.recipeService.addRecipe(response);
+            this.onCancel();
+          },
+        (error:String)=>{
+          console.log("in error block in ts")
+          this.errormsg=error;
+          this.recipeWebservice.errormsg.next(this.errormsg);
+        });
     }
-    this.onCancel();
+   
   }
 
   onAddIngredient() {

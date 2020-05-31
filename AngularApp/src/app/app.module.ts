@@ -60,12 +60,12 @@ import { WelcomeComponent } from './welcome/welcome.component';
     //shoppingListModule
     // ,RouterModule.forRoot(approutes)
   ],
-  providers: [ShoppingService, RecipeServcie
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: AuthInterceptorService,
-    //   multi: true
-    // }
+  providers: [ShoppingService, RecipeServcie,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

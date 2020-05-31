@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { Datastaorageservice } from '../shared/DataStorage';
 import { RecipeServcie } from '../recipes/RecipeService';
-import { Subscription } from 'rxjs';
+import { Subscription, VirtualTimeScheduler } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { RecipeWebserviceService } from '../recipes/recipe-webservice.service';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
+  error: any;
   constructor(private datastorage:Datastaorageservice,private recipeservice:RecipeServcie,
-    private authservice:AuthService,private router:Router){}
+    private authservice:AuthService,private router:Router,private recipewebservice:RecipeWebserviceService){}
   
   // feature:string;
  //@Output() emitrecipe=new EventEmitter<string>();
@@ -38,10 +40,20 @@ onLogout(){
   }
 
   getdata(){
-    this.datastorage.FetchData().subscribe(response =>
-      {
-          this.recipeservice.setRecipes(response);
-      })
+    // this.datastorage.FetchData().subscribe(response =>
+    //   {
+    //       this.recipeservice.setRecipes(response);
+    //   })
+      this.recipewebservice.fetchData().subscribe(response =>
+        {
+            this.recipeservice.setRecipes(response);
+        }),(
+          (errormsg:String)=>{
+            this.error=errormsg;
+            console.log(this.error);
+            this.recipewebservice.errormsg.next(errormsg);
+          }
+        )
   }
   ngOnDestroy() {
     this.userSub.unsubscribe();

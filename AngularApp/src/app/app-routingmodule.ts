@@ -16,6 +16,7 @@ const approutes: Routes=[
     {path:'welcome', component: WelcomeComponent },
     {path:'recipes',component:RecipesComponent,
     canActivate:[Authguard],    
+    //resolve:[{recipelist:RecipeResolverservice}],
     resolve:[RecipeResolverservice],
     children:[
         {path:'',component:RecipeStartComponent},

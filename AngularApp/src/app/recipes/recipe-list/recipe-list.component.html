@@ -7,11 +7,12 @@
   </div>
   <hr>
   <div class="row">
+    <div *ngIf='error'>{{errormsg}}</div>
     <div class="col-xs-12">
-      
+      <!-- <app-alert [message]='errormsg' *ngIf='error' (close)="onHandlerror()"></app-alert> -->
       <app-recipe-item *ngFor="let recipeel of recipes; let i = index" 
       [recipeitem1]=recipeel
-      [index]="i"></app-recipe-item>
+      [index]="recipeel.id"></app-recipe-item>
     </div>
   </div>
   
