@@ -11,6 +11,7 @@ export class WelcomeComponent implements OnInit {
   username='admin'
   password='nimda'
   message:string
+  person:Person
   constructor(private http:HttpClient) { }
 
   ngOnInit() {
@@ -25,12 +26,35 @@ export class WelcomeComponent implements OnInit {
         response=>
         {
             this.message=response.message;
+           
         }
       );
 
   }
+  ongetperonsByid(){
+    this.http.get<Person>('http://localhost:8080/persons',
+    { headers:new HttpHeaders({Authorization: this.authString})}
+    ).subscribe(
+      response=>
+      {
+          console.log(response.description)
+          // this.person.id=response.id;
+          // this.person.name=response.name;
+          // this.person.description=response.description;
+          this.person=response;
+
+      }
+    );
+}
 
 }
 export class WelcomeBean{
   message:string;
+}
+export class Person{
+
+  id:number;
+  name:String;
+  description:String;
+
 }
