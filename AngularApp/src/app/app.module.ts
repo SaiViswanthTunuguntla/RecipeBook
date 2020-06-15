@@ -19,6 +19,7 @@ import { AuthComponent } from './auth/auth.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AuthInterceptorService } from './auth/auth.interceptor';
 import { AlertComponent } from './shared/alert/alert.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 //import { shoppingListModule } from './shopping-list/shopping-module';
 // const approutes: Routes=[
 //   {path:'',component:AppHeaderComponent,pathMatch:'full'},
@@ -47,7 +48,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     RecipeEditComponent,
     AuthComponent,
     SpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,

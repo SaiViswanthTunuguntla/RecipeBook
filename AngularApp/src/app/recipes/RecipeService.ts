@@ -32,26 +32,38 @@ export class RecipeServcie{
         //   this.recipes.push(re);
         // }
         this.recipes=recipes;
-       // console.log("in recipes service:",this.recipes);
+        console.log("in recipes service:",this.recipes);
         this.recipesChanged.next(this.recipes.slice());
       }
     getRecipes(){
       return this.recipes.slice();   
     }
     getRecipe(index: number) {
-      return this.recipes[index];
+     // console.log(index)
+      for (let recipe of this.recipes){
+        if(recipe.id==index) {
+         // console.log(recipe)
+          return recipe;
+      }
     }
+  }
     addrecipes(){
         //this.emitRecipes.emit(recipes);
     }
     addRecipe(recipe: Recipe) {
-      console.log(recipe);
+      console.log("in recipes service respone from backend after adding the recipe: ");
+      //console.log(recipe);
       this.recipes.push(recipe);
       this.recipesChanged.next(this.recipes.slice());
     }
   
-    updateRecipe(index: number, newRecipe: Recipe) {
-      this.recipes[index] = newRecipe;
+    updateRecipe(id: number, newRecipe: Recipe) {
+      for (let ind in this.recipes){
+        if(this.recipes[ind].id==id) {
+         // console.log(recipe)
+         this.recipes[ind] = newRecipe;
+      }
+    }
       this.recipesChanged.next(this.recipes.slice());
     }
   

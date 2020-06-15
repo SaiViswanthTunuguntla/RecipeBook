@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeServcie } from '../RecipeService';
 import { Recipe } from '../recipe.model';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { RecipeWebserviceService } from '../recipe-webservice.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,18 +12,16 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
    recipe111 :Recipe;
   id:number;
-  constructor(private recipeservcie:RecipeServcie,private route:ActivatedRoute,private router:Router) { }
+  errormsg: String;
+  constructor(private recipeservcie:RecipeServcie,private recipewebservice:RecipeWebserviceService,
+    private route:ActivatedRoute,private router:Router) { }
 
   ngOnInit() {
     this.id=this.route.snapshot.params['id'];
-    //console.log(this.recipename);
-
     this.route.params.subscribe(
       (params:Params)=>{
         this.id=this.route.snapshot.params['id'];
-        
        this.recipe111= this.recipeservcie.getRecipe(this.id);
-       
       }
     )
     
@@ -33,11 +32,22 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onedit(){
-    console.log("jnk")
     this.router.navigate(['edit'],{relativeTo:this.route})
   }
   onDeleteRecipe() {
-    this.recipeservcie.deleteRecipe(this.id);
+    this.recipewebservice.deleteRecipe(this.id).subscribe(
+      response=>{
+        console.log(response);
+         this.recipeservcie.deleteRecipe(this.id);
+       },
+     (error:any)=>{
+       console.log("in error block in ts")
+       console.log(error);
+       this.errormsg=error;
+       this.recipewebservice.errormsg.next(this.errormsg);
+     }
+    )
+   
     this.router.navigate(['/recipes']);
   }
 }

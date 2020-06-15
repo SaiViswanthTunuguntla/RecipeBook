@@ -122,7 +122,7 @@ export class AuthService{
 
     private handleerror(errorresp:HttpErrorResponse)
     {
-         //console.log(errorresp);
+         console.log(errorresp);
          let errsormsg="An unknown error ocuured";
          switch (errorresp.error.error.message) {
              case "EMAIL_NOT_FOUND":
