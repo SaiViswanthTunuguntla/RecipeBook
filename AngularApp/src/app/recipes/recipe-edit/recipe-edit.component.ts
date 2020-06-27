@@ -38,7 +38,8 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editMode) {
+    if (this.editMode) 
+    {
       this.recipeWebservice.updateRecipe(this.id, this.recipeForm.value).subscribe(
         response=>{
           this.recipeService.updateRecipe(this.id,response);
@@ -49,7 +50,9 @@ export class RecipeEditComponent implements OnInit {
         this.errormsg=error;
         this.recipeWebservice.errormsg.next(this.errormsg);
       });
-    } else {
+    } 
+    else 
+    {
         this.recipeWebservice.addRecipe(this.recipeForm.value).subscribe(
           response=>{
             this.recipeService.addRecipe(response);
@@ -88,6 +91,7 @@ export class RecipeEditComponent implements OnInit {
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
+    let id:Number;
     let recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
@@ -95,6 +99,7 @@ export class RecipeEditComponent implements OnInit {
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
+      id=recipe.id;
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(

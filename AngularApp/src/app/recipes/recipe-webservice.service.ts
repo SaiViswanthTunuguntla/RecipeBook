@@ -32,7 +32,7 @@ export class RecipeWebserviceService {
   updateRecipe(id: number, recipe: Recipe) {
     this.recipe=recipe;
     //console.log(id);
-    //console.log(this.recipe);
+    console.log("in servcie method before hiting webservcie",this.recipe);
     return  this.http.put<Recipe>(`http://localhost:8080/users/viswa/recipes/${id}`,this.recipe
     )
     .pipe(tap(
